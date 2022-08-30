@@ -16,11 +16,11 @@ container.addEventListener('click', function() {
     analyser = audioContext.createAnalyser();
     audioSource.connect(analyser);
     analyser.connect(audioContext.destination);
-    analyser.fftSize = 4096;
+    analyser.fftSize = 1024;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
-    const barWidth = 1.5;
+    const barWidth = 10;
     let barHeight;
     let x;
 
@@ -45,7 +45,7 @@ file.addEventListener('change', function(){
     analyser = audioContext.createAnalyser();
     audioSource.connect(analyser);
     analyser.connect(audioContext.destination);
-    analyser.fftSize = 4096;
+    analyser.fftSize = 1024;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
@@ -71,7 +71,7 @@ function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray) {
         ctx.save();
         ctx.translate(canvas.width/2, canvas.height/2);
         ctx.rotate(i * Math.PI * 16 / bufferLength);
-        const hue = i / 4;
+        const hue = i;
         ctx.fillStyle = 'hsl(' + hue + ',100%, 50%';
         ctx.fillRect(0, 0, barWidth, barHeight);
         x += barWidth;
